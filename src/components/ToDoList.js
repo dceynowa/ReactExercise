@@ -12,21 +12,26 @@ class ToDoList extends React.Component {
     }
 
     addTask = () => {
-        const list = this.state.tasks;
-        list.push(this.state.draft);
+        const {tasks, draft} = this.state
+        const list = tasks;
+        list.push(draft);
         this.setState({tasks: list, draft: ''})
     }
     
     render () {
+        
+        const {title} = this.props
+        const {tasks, draft} = this.state
+        
         return (
             <div>
                 <h1>
-                    {this.props.title}
+                    {title}
                 </h1>
                 
-                {this.state.tasks.map(task => <div><p> {task} </p></div>)}
+                {tasks.map(task => <div><p> {task} </p></div>)}
 
-                <input type="text" onChange={this.updateDraft} value={this.state.draft}/>
+                <input type="texct" onChange={this.updateDraft} value={draft}/>
                 <button onClick={this.addTask}> Add </button>
             </div>
         )
