@@ -13,9 +13,8 @@ class ToDoList extends React.Component {
 
     addTask = () => {
         const {tasks, draft} = this.state
-        const list = tasks;
-        list.push(draft);
-        this.setState({tasks: list, draft: ''})
+        tasks.push(draft);
+        this.setState({tasks, draft: ''})
     }
     
     render () {
