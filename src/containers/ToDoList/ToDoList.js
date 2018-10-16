@@ -1,7 +1,23 @@
 import React from 'react';
 
+import styled from 'styled-components';
+
 import NewTodoForm from '../../components/NewTodoForm/NewTodoForm'
 import ToDoItem from '../../components/ToDoItem/ToDoItem'
+
+const Containers = styled.div`
+    background: #2b2e39;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 600px;
+    padding: 14px;
+    border-radius: 14px; 
+    margin-top: 14px;
+`
+
+const Header = styled.h1`
+    color: #fff;
+`
 
 class ToDoList extends React.Component {
     
@@ -34,17 +50,17 @@ static defaultProps = {
         const {tasks, draft} = this.state
         
         return (
-            <div>
-                <h1>
+            <Containers>
+                <Header>
                     {title}
-                </h1>
+                </Header>
                 
                 {tasks.map(task => <ToDoItem text={task.text} done={task.done}/>)}
                 <NewTodoForm  
                     onSubmit = {this.addTask}
                     onChange = {this.updateDraft}
                     draft = {draft} />
-            </div>
+            </Containers>
         )
     }
 }
