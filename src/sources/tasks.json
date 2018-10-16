@@ -1,0 +1,13 @@
+{
+    "tasks": [{
+            "id": 1,
+            "content": "Study React",
+            "done": true
+        },
+        {
+            "id": 2,
+            "content": "Go for a walk",
+            "done": false
+        }
+    ]
+}
