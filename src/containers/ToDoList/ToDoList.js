@@ -1,7 +1,18 @@
 import React from 'react';
-import ToDoItem from './ToDoItem'
+
+import NewTodoForm from '../../components/NewTodoForm/NewTodoForm'
+import ToDoItem from '../../components/ToDoItem/ToDoItem'
+
 class ToDoList extends React.Component {
     
+static defaultProps = {
+    tasks : [
+        {done: true, text: 'Study React'},
+        {done: false, text: 'Go for a walk'}
+      ],
+    title : 'My Stuff'  
+}
+
     state = {
         tasks: this.props.tasks,
         draft: ''
@@ -29,9 +40,10 @@ class ToDoList extends React.Component {
                 </h1>
                 
                 {tasks.map(task => <ToDoItem text={task.text} done={task.done}/>)}
-
-                <input type="texct" onChange={this.updateDraft} value={draft}/>
-                <button onClick={this.addTask}> Add </button>
+                <NewTodoForm  
+                    onSubmit = {this.addTask}
+                    onChange = {this.updateDraft}
+                    draft = {draft} />
             </div>
         )
     }
