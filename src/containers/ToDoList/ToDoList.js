@@ -20,14 +20,21 @@ const Header = styled.h1`
 `
 
 class ToDoList extends React.Component {
-    
-static defaultProps = {
-    tasks : [
-        {done: true, text: 'Study React'},
-        {done: false, text: 'Go for a walk'}
-      ],
-    title : 'My Stuff'  
-}
+
+    componentDidMount = () => {
+        fetch('http://localhost:3000/data/tasks.json')
+            .then(reponse => reponse.json())
+            .then(json => console.log(json))
+            
+    }
+
+    static defaultProps = {
+        tasks : [
+            {done: true, text: 'Study React'},
+            {done: false, text: 'Go for a walk'}
+        ],
+        title : 'My Stuff'  
+    }
 
     state = {
         tasks: this.props.tasks,
@@ -55,7 +62,7 @@ static defaultProps = {
                     {title}
                 </Header>
                 
-                {tasks.map(task => <ToDoItem text={task.text} done={task.done}/>)}
+                {tasks.map(task => <ToDoItem text={task.consent} done={task.done}/>)}
                 <NewTodoForm  
                     onSubmit = {this.addTask}
                     onChange = {this.updateDraft}

@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+//import data from '../../../api/tasks.json';
+
 const Item = styled.div`
   background: #343744;
   border-radius: 10px;
@@ -12,6 +14,7 @@ const Item = styled.div`
   `
 
 class ToDoItem extends React.Component {
+   
     static defaultProps = {
         done: false
     }
