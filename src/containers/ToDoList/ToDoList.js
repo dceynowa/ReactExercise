@@ -22,9 +22,9 @@ const Header = styled.h1`
 class ToDoList extends React.Component {
       
     componentDidMount () {
-        fetch('http://localhost:3000/data/tasks.json')
+        fetch('http://localhost:3004/tasks')
             .then(reponse => reponse.json())
-            .then(json => this.setState({tasks: json.tasks}));
+            .then(json => this.setState({tasks: json}));
     }
 
     static defaultProps = {
@@ -57,7 +57,7 @@ class ToDoList extends React.Component {
                     {title}
                 </Header>
 
-                {tasks.map(task => <ToDoItem text={task.content} done={task.done}/>)}
+                {tasks.map(task => <ToDoItem id={task.id} text={task.content} done={task.done}/>)}
                 
                 <NewTodoForm  
                     onSubmit = {this.addTask}
