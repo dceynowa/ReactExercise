@@ -57,7 +57,7 @@ class ToDoList extends React.Component {
                     {title}
                 </Header>
 
-                {tasks.map(task => <ToDoItem id={task.id} text={task.content} done={task.done}/>)}
+                {tasks.map(task => <ToDoItem id={task.id} key={task.id} text={task.content} done={task.done}/>)}
                 
                 <NewTodoForm  
                     onSubmit = {this.addTask}
