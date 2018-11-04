@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import NewTodoForm from '../../components/NewTodoForm/NewTodoForm'
 import ToDoItem from '../../components/ToDoItem/ToDoItem'
 
+import * as toDoItemApi from '../../helpers/toDoItemApi'
+
 const Containers = styled.div`
     background: #2b2e39;
     margin: 0 auto;
@@ -21,10 +23,9 @@ const Header = styled.h1`
 
 class ToDoList extends React.Component {
       
-    componentDidMount () {
-        fetch('http://localhost:3004/tasks')
-            .then(reponse => reponse.json())
-            .then(json => this.setState({tasks: json}));
+    componentDidMount= async () => {
+        const tasks = await toDoItemApi.getAll()
+        this.setState({tasks : tasks})
     }
 
     static defaultProps = {
