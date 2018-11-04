@@ -1,19 +1,19 @@
 {
-    "tasks": [{
-            "id": 1,
-            "content": "Study React",
-            "done": true
-        },
-        {
-            "id": 2,
-            "content": "Go for a walk",
-            "done": false
-        },
-        {
-            "id": 3,
-            "content": "Buy milk",
-            "done": false
-
-        }
-    ]
+  "tasks": [
+    {
+      "id": 1,
+      "content": "Study React",
+      "done": false
+    },
+    {
+      "id": 2,
+      "content": "Go for a walk",
+      "done": false
+    },
+    {
+      "id": 3,
+      "content": "Buy milk",
+      "done": true
+    }
+  ]
 }

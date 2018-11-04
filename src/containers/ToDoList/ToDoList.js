@@ -23,7 +23,7 @@ class ToDoList extends React.Component {
       
     componentDidMount () {
         fetch('http://localhost:3004/tasks')
-            .then(reponse => {console.log(reponse.status);reponse.json()})
+            .then(reponse => reponse.json())
             .then(json => this.setState({tasks: json}));
     }
 
