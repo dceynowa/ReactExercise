@@ -31,7 +31,7 @@ class ToDoItem extends React.Component {
            body: JSON.stringify({
             done: !this.state.done
            }   
-         )}).then (response => {
+          )}).then (response => {
             if (response.ok) { 
                 this.setState({done: !this.state.done})
             }
