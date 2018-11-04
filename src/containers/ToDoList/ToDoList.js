@@ -6,6 +6,8 @@ import NewTodoForm from '../../components/NewTodoForm/NewTodoForm'
 import ToDoItem from '../../components/ToDoItem/ToDoItem'
 
 import * as toDoItemApi from '../../helpers/toDoItemApi'
+import * as _ from 'ramda'
+import { toDoItemsApiUrl } from '../../helpers/routes';
 
 const Containers = styled.div`
     background: #2b2e39;
@@ -42,10 +44,10 @@ class ToDoList extends React.Component {
         this.setState({draft: event.target.value})
     }
 
-    addTask = () => {
+    addTask = async () => {
         const {tasks, draft} = this.state
-        tasks.push({text: draft, done: false });
-        this.setState({tasks, draft: ''})
+        const task = await toDoItemApi.create({content:draft})
+        this.setState({tasks: _.append(task, tasks), draft: ''})
     }
                                                                             
     render () {

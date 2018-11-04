@@ -23,3 +23,8 @@ export const get = url =>
       reject(response)
     }
   })
+
+  export const post = (url, body) => 
+    new Promise(
+        (resolve, reject) => apiCall(url, 'POST', body, resolve, reject)
+    )
