@@ -2,7 +2,6 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-//import data from '../../../api/tasks.json';
 
 const Item = styled.div`
   background: #343744;
@@ -24,7 +23,21 @@ class ToDoItem extends React.Component {
     }
 
     toggleDone = () => {
-        this.setState({done: !this.state.done})
+        fetch(`http://localhost:3004/tasks/${this.props.id}`, {
+           method: 'PATCH' ,
+           headers: {
+            "Content-Type" : "application/json; charset=utf-8"
+           },
+           body: JSON.stringify({
+            done: !this.state.done
+           }   
+         )}).then (response => {
+            if (response.ok) { 
+                this.setState({done: !this.state.done})
+            }
+        })
+
+        
     }
 
     render () {
