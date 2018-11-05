@@ -35,16 +35,17 @@ class ToDoItem extends React.Component {
             if (response.ok) { 
                 this.setState({done: !this.state.done})
             }
-        })
-
-        
+        })  
     }
+
+    destroy = () => this.props.destroy(this.props.id)
 
     render () {
         const {text} = this.props
         return (
-            <Item onClick={this.toggleDone} done={this.state.done}>
-                <p>{text}</p>
+            <Item done={this.state.done}>
+                <div>{text}</div>
+                <button onClick={this.destroy}>x</button>
             </Item>
         )
     }

@@ -49,6 +49,21 @@ class ToDoList extends React.Component {
         const task = await toDoItemApi.create({content:draft})
         this.setState({tasks: _.append(task, tasks), draft: ''})
     }
+
+    findById = (id, arr) => {
+        const index = _.findIndex(_.propEq('id', id))(arr)
+
+        return {index, task: arr[index]}
+    }
+
+    destroyTask = async (id) => {
+        const {tasks} = this.state
+         await toDoItemApi.destroy(id)
+
+        const {index} = this.findById(id, tasks)
+
+        this.setState({tasks: _.remove(index, '1', tasks)})
+    }
                                                                             
     render () {
         const {title} = this.props
@@ -60,7 +75,14 @@ class ToDoList extends React.Component {
                     {title}
                 </Header>
 
-                {tasks.map(task => <ToDoItem id={task.id} key={task.id} text={task.content} done={task.done}/>)}
+                {tasks.map(task => 
+                <ToDoItem 
+                    id={task.id} 
+                    key={task.id}
+                    destroy={this.destroyTask} 
+                    text={task.content} 
+                    done={task.done}/>
+                )}
                 
                 <NewTodoForm  
                     onSubmit = {this.addTask}
