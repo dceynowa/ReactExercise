@@ -64,6 +64,16 @@ class ToDoList extends React.Component {
 
         this.setState({tasks: _.remove(index, '1', tasks)})
     }
+
+    toggleDone = async (id) => {
+        const {tasks} = this.state
+        const {index, task} = this.findById(id, tasks)
+        
+        const response = await toDoItemApi.update(id, {done: !task.done})
+
+
+        this.setState({tasks: _.update(index, response, tasks)})
+    } 
                                                                             
     render () {
         const {title} = this.props
@@ -81,6 +91,7 @@ class ToDoList extends React.Component {
                     key={task.id}
                     destroy={this.destroyTask} 
                     text={task.content} 
+                    toggleDone={this.toggleDone}
                     done={task.done}/>
                 )}
                 

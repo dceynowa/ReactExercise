@@ -29,6 +29,11 @@ export const get = url =>
         (resolve, reject) => apiCall(url, 'POST', body, resolve, reject)
     )
 
+  export const patch = (url, body) => 
+    new Promise(
+        (resolve, reject) => apiCall(url, 'PATCH', body, resolve, reject)
+    )
+
   export const destroy = url => 
       new Promise (
         (resolve, reject) => {

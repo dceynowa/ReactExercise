@@ -9,3 +9,6 @@ export const create = (params) =>
 
 export const destroy = id =>
   api.destroy(toDoItemsApiUrl(id))
+
+export const update = (id, params) =>
+  api.patch(toDoItemsApiUrl(id), {...params })

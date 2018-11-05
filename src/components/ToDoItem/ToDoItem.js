@@ -13,38 +13,15 @@ const Item = styled.div`
   `
 
 class ToDoItem extends React.Component {
-   
-    static defaultProps = {
-        done: false
-    }
-
-    state = {
-        done: this.props.done
-    }
-
-    toggleDone = () => {
-        fetch(`http://localhost:3004/tasks/${this.props.id}`, {
-           method: 'PATCH' ,
-           headers: {
-            "Content-Type" : "application/json; charset=utf-8"
-           },
-           body: JSON.stringify({
-            done: !this.state.done
-           }   
-          )}).then (response => {
-            if (response.ok) { 
-                this.setState({done: !this.state.done})
-            }
-        })  
-    }
+    toggleDone = () => this.props.toggleDone(this.props.id)
 
     destroy = () => this.props.destroy(this.props.id)
 
     render () {
-        const {text} = this.props
+        const {text, done} = this.props
         return (
-            <Item done={this.state.done}>
-                <div>{text}</div>
+            <Item done={done}>
+                <div onClick={this.toggleDone}>{text}</div>
                 <button onClick={this.destroy}>x</button>
             </Item>
         )
